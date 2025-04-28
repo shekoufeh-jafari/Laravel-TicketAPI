@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use App\Permissions\V1\Abilities;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTicketRequest extends BaseTicketRequest
 {
@@ -25,8 +27,12 @@ class UpdateTicketRequest extends BaseTicketRequest
             'data.attributes.title' => 'sometimes|string',
             'data.attributes.description' => 'sometimes|string',
             'data.attributes.status' => 'sometimes|string|in:A,C,X,H',
-            'data.relationships.author.data.id' => 'sometimes|integer'
+            'data.relationships.author.data.id' => 'prohibited'
         ];
+
+        if(Auth::user()->tokenCan(Abilities::UpdateTicket)){
+            $rules['data.relationships.author.data.id'] = 'sometimes|integer';
+        }
 
         return $rules;
     }

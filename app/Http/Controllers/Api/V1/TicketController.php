@@ -10,13 +10,25 @@ use App\Http\Requests\Api\V1\UpdateTicketRequest;
 use App\Http\Resources\V1\TicketResource;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Policies\V1\TicketPolicy;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TicketController extends ApiController
 {
+    protected $policyClass = TicketPolicy::class;
+
+
     /**
-     * Display a listing of the resource.
+     * Get All Tickets
+     * 
+     * @group Managing Tickets
+     * @queryparam sort string Data filed(s) to sort by. Separate multiple fields with commas. Denote descending sort with a minus sign. Example: sort=title,-createdAt 
+     * @queryparam filter[status] Filter by status code: A, C, H, X. No-example
+     * @queryparam filter[title] Filter by title. Wildcards are supported. Example: *fix*
+     * 
      */
+
     public function index(TicketFilter $filters)
     {
         // return Ticket::all();
@@ -33,20 +45,23 @@ class TicketController extends ApiController
     }
 
 
-    /**
-     * Store a newly created resource in storage.
+/**
+     * Create a Tickets
+     * 
+     * Creates a new ticket. Users can only create tickets for themselves. Managers can create tickets for any user.
+     * 
+     * @group Managing Tickets
+     * 
      */
+
     public function store(StoreTicketRequest $request)
     {
-        try {
-            $user = User::findOrFail($request->input('data.relationships.author.data.id'));
-        } catch (ModelNotFoundException $exception) {
-            return $this->ok('User not found', [
-                'error' => 'the provided user id does not exists.'
-            ]);
-        }
 
-        return new TicketResource($request->mappedAttributes());
+        //policy
+        if ($this->isAble('store', Ticket::class)) {
+            return new TicketResource(Ticket::create($request->mappedAttributes()));
+        }
+        return $this->error('You are not authorized to create that resource.', 401);
     }
 
 
@@ -79,15 +94,17 @@ class TicketController extends ApiController
         //PATCH
         try {
             $ticket = Ticket::findOrfail($ticket_id);
-            $ticket->update($request->mappedAttributes());
+            //policy
+            if ($this->isAble('update', $ticket)) {
+                $ticket->update($request->mappedAttributes());
 
+                return new TicketResource($ticket);
+            }
 
-            return new TicketResource($ticket);
-
+            return $this->error('You are not authorized to update that resource.', 401);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket cannot be found.', 404);
         }
-
     }
 
 
@@ -97,9 +114,15 @@ class TicketController extends ApiController
         // PUT
         try {
             $ticket = Ticket::findOrfail($ticket_id);
-            $ticket->update($request->mappedAttributes());
 
-            return new TicketResource($ticket);
+            //policy
+            if ($this->isAble('replace', $ticket)) {
+                $ticket->update($request->mappedAttributes());
+
+                return new TicketResource($ticket);
+            }
+
+            return $this->error('You are not authorized to replace that resource.', 401);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket cannot be found.', 404);
         }
@@ -114,9 +137,15 @@ class TicketController extends ApiController
     {
         try {
             $ticket = Ticket::findOrfail($ticket_id);
-            $ticket->delete();
 
-            return $this->ok('Ticket successfuly deleted');
+            //policy
+            if ($this->isAble('delete', $ticket)) {
+                $ticket->delete();
+
+                return $this->ok('Ticket successfuly deleted');
+            }
+
+            return $this->error('You are not authorized to delete that resource.', 401);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket cannot be found.', 404);
         }
