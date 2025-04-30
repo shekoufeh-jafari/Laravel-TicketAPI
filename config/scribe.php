@@ -99,21 +99,21 @@ return [
 
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
-        'default' => true,
+        'default' => 'bearer',
 
         // Where is the auth value meant to be sent in a request?
-        'in' => AuthIn::BEARER->value,
+        'in' => 'header',
 
         // The name of the auth parameter (e.g. token, key, apiKey) or header (e.g. Authorization, Api-Key).
         'name' => 'Authorization',
 
         // The value of the parameter to be used by Scribe to authenticate response calls.
         // This will NOT be included in the generated documentation. If empty, Scribe will use a random value.
-        'use_value' => '6|fvTly8gKynMeabmXulLg0S6MfMld6nzMKfhWCvpv8e89feb8',
+        'use_value' => 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a',
 
         // Placeholder your users will see for the auth parameter in the example requests.
         // Set this to null if you want Scribe to use a random value as placeholder instead.
-        'placeholder' => '{YOUR_AUTH_KEY}',
+        'placeholder' => 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a',
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
         'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',

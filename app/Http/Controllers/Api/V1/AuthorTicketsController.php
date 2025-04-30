@@ -19,6 +19,19 @@ class AuthorTicketsController extends ApiController
 {
     protected $policyClass = TicketPolicy::class;
 
+
+    /**
+     * Get All Authors 
+     * @authenticated
+     * 
+     * @group Managing Authors Ticket
+     * @queryparam sort string Data filed(s) to sort by. Separate multiple fields with commas. Denote descending sort with a minus sign. Example: sort=name,-createdAt 
+     * 
+     * @queryparam filter[name] Filter by title. Wildcards are supported. Example: *a*
+     * 
+     */
+
+
     public function index($author_id, TicketFilter $filters)
     {
         return TicketResource::collection(
@@ -26,9 +39,18 @@ class AuthorTicketsController extends ApiController
         );
     }
 
+
+
     /**
-     * Store a newly created resource in storage.
+     * Create a Author Ticket
+     * @authenticated
+     * 
+     * Creates a new ticket. Users can only create tickets for themselves. Managers can create tickets for any user.
+     * 
+     * @group Managing Authors Ticket
+     * 
      */
+   
     public function store(StoreTicketRequest $request, $author_id)
     {
 
@@ -42,7 +64,15 @@ class AuthorTicketsController extends ApiController
         return $this->error('You are not authorized to create that resource.', 401);
     }
 
-
+ /**
+     * Replace a Author Ticket
+     * @authenticated
+     * 
+     * Replace the specified ticket. 
+     * 
+     * @group Managing Authors Ticket
+     * 
+     */
 
     public function replace(ReplaceTicketRequest $request, $author_id, $ticket_id)
     {
@@ -63,7 +93,15 @@ class AuthorTicketsController extends ApiController
         }
     }
 
-
+ /**
+     * Update a Author Ticket
+     * @authenticated
+     * 
+     * Update the specified ticket. 
+     * 
+     * @group Managing Authors Ticket
+     * 
+     */
 
     public function update(UpdateTicketRequest $request, $author_id, $ticket_id)
     {
@@ -86,8 +124,15 @@ class AuthorTicketsController extends ApiController
 
 
 
-    /**
-     * Remove the specified resource from storage.
+    
+      /**
+     * Remove a Author Ticket
+     * @authenticated
+     * 
+     * Remove the specified ticket. 
+     * 
+     * @group Managing Authors Ticket
+     * 
      */
     public function destroy($author_id, $ticket_id)
     {

@@ -1,0 +1,122 @@
+name: 'Managing Authors'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/authors
+    metadata:
+      groupName: 'Managing Authors'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get All Authors'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      sort:
+        name: sort
+        description: 'Data filed(s) to sort by. Separate multiple fields with commas. Denote descending sort with a minus sign.'
+        required: false
+        example: 'sort=name,-createdAt'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'filter[name]':
+        name: 'filter[name]'
+        description: 'Filter by title. Wildcards are supported.'
+        required: false
+        example: '*a*'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      sort: 'sort=name,-createdAt'
+      'filter[name]': '*a*'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"type":"user","id":1,"attributes":{"name":"Mrs. Cecelia Schumm","email":"ritchie.alexandrea@example.net","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:19.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/1"}},{"type":"user","id":2,"attributes":{"name":"Mrs. Karianne Waelchi I","email":"karine46@example.net","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/2"}},{"type":"user","id":3,"attributes":{"name":"Ewell Hills","email":"whills@example.org","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/3"}},{"type":"user","id":4,"attributes":{"name":"Alejandra Turcotte","email":"gino10@example.org","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/4"}},{"type":"user","id":5,"attributes":{"name":"Dr. Armand Bogisich","email":"berge.marc@example.org","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/5"}},{"type":"user","id":6,"attributes":{"name":"Bernadette Luettgen","email":"rice.tyrell@example.org","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/6"}},{"type":"user","id":7,"attributes":{"name":"Prof. Ilene Parker","email":"jacobs.daphnee@example.com","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/7"}},{"type":"user","id":8,"attributes":{"name":"Mr. Jared Price DDS","email":"gail55@example.net","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/8"}},{"type":"user","id":9,"attributes":{"name":"Ariane Hegmann","email":"tod.turcotte@example.net","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/9"}},{"type":"user","id":10,"attributes":{"name":"Alivia Volkman I","email":"lon.wolff@example.org","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:20.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/10"}}],"links":{"first":"http:\/\/localhost\/api\/v1\/authors?page=1","last":"http:\/\/localhost\/api\/v1\/authors?page=7","prev":null,"next":"http:\/\/localhost\/api\/v1\/authors?page=2"},"meta":{"current_page":1,"from":1,"last_page":7,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=1","label":"1","active":true},{"url":"http:\/\/localhost\/api\/v1\/authors?page=2","label":"2","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=3","label":"3","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=4","label":"4","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=5","label":"5","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=6","label":"6","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=7","label":"7","active":false},{"url":"http:\/\/localhost\/api\/v1\/authors?page=2","label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/v1\/authors","per_page":15,"to":10,"total":104}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/authors/{id}'
+    metadata:
+      groupName: 'Managing Authors'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show a Authors'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the author.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"type":"user","id":1,"attributes":{"name":"Mrs. Cecelia Schumm","email":"ritchie.alexandrea@example.net","isManager":false,"emailVerifiedAt":"2025-04-26T21:41:19.000000Z","createdAt":"2025-04-26T21:41:20.000000Z","updateAt":"2025-04-26T21:41:20.000000Z"},"links":{"self":"http:\/\/localhost\/api\/v1\/authors\/1"}}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a'
+    controller: null
+    method: null
+    route: null
+    custom: []

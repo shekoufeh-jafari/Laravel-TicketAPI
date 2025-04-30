@@ -16,8 +16,15 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class UserController extends ApiController
 {
     protected $policyClass = UserPolicy::class;
-    /**
-     * Display a listing of the resource.
+   /**
+     * Get All Users
+     * @authenticated
+     * 
+     * @group Managing Users
+     * @queryparam sort string Data filed(s) to sort by. Separate multiple fields with commas. Denote descending sort with a minus sign. Example: sort=name,-createdAt 
+     * 
+     * @queryparam filter[name] Filter by title. Wildcards are supported. Example: *a*
+     * 
      */
     public function index(AuthorFilter $filters)
     {
@@ -27,8 +34,15 @@ class UserController extends ApiController
         );
     }
 
+  
     /**
-     * Store a newly created resource in storage.
+     * Create a User
+     * @authenticated
+     * 
+     * Creates a new user. Managers can create User.
+     * 
+     * @group Managing Users
+     * 
      */
     public function store(StoreUserRequest $request)
     {
@@ -41,8 +55,15 @@ class UserController extends ApiController
         return $this->error('You are not authorized to create that resource.', 401);
     }
 
+  
     /**
-     * Display the specified resource.
+     * Show a User
+     * @authenticated
+     * 
+     * Display the specified ticket. 
+     * 
+     * @group Managing Users
+     * 
      */
     public function show(User $user)
     {
@@ -54,9 +75,16 @@ class UserController extends ApiController
 
 
 
+    
     /**
-     * Update the specified resource in storage.
-     */
+     * Update a User
+     * @authenticated
+     * 
+     * Update the specified User. 
+     * 
+     * @group Managing Users
+     * 
+     */ 
     public function update(UpdateUserRequest $request, $user_id)
     {
         //PATCH
@@ -78,6 +106,15 @@ class UserController extends ApiController
 
 
 
+ /**
+     * Replace a User
+     * @authenticated
+     * 
+     * Replace the specified User. 
+     * 
+     * @group Managing Users
+     * 
+     */
 
     public function replace(ReplaceUserRequest $request, $user_id)
     {
@@ -99,9 +136,14 @@ class UserController extends ApiController
 
 
 
-
-    /**
-     * Remove the specified resource from storage.
+ /**
+     * Remove a User
+     * @authenticated
+     * 
+     * Remove the specified User. 
+     * 
+     * @group Managing Users
+     * 
      */
     public function destroy($user_id)
     {

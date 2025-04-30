@@ -11,8 +11,15 @@ use App\Models\User;
 
 class AuthorsController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
+      /**
+     * Get All Authors
+     * @authenticated
+     * 
+     * @group Managing Authors
+     * @queryparam sort string Data filed(s) to sort by. Separate multiple fields with commas. Denote descending sort with a minus sign. Example: sort=name,-createdAt 
+     * 
+     * @queryparam filter[name] Filter by title. Wildcards are supported. Example: *a*
+     * 
      */
     public function index(AuthorFilter $filters)
     {
@@ -36,8 +43,14 @@ class AuthorsController extends ApiController
         //
     }
 
-    /**
-     * Display the specified resource.
+     /**
+     * Show a Authors
+     * @authenticated
+     * 
+     * Display the specified Author. 
+     * 
+     * @group Managing Authors
+     * 
      */
     public function show(User $author)
     {
@@ -50,19 +63,15 @@ class AuthorsController extends ApiController
 
 
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(UpdateUserRequest $request, User $user)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
+   
+    // public function destroy(User $user)
+    // {
+    //     //
+    // }
 }

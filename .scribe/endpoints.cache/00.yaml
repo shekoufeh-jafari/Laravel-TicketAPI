@@ -82,7 +82,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Authorization: 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -103,7 +103,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6|fvTly8gKynMeabmXulLg0S6MfMld6nzMKfhWCvpv8e89feb8'
+      - 'Bearer 9|GdiYU5BHnp4kksTZ3Ovm2ayPSRlmPzNYDFIWrxeh2d8fde3a'
     controller: null
     method: null
     route: null
